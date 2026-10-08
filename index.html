@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d1b">
+
+  <title>霍格華茲傳愛學院｜入學邀請</title>
+
+  <meta name="description" content="一封等待被開啟的魔法入學邀請。請於 10/10 23:59 前完成入學手續。">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 28px 18px;
+      color: #f8efd7;
+      font-family: Georgia, "Times New Roman", serif;
+
+      background:
+        radial-gradient(circle at 50% 18%,
+          #35466e 0%,
+          #18223f 28%,
+          #0d1327 58%,
+          #070a13 100%);
+    }
+
+    /* 星星背景 */
+    .stars,
+    .stars::before,
+    .stars::after {
+      position: fixed;
+      content: "";
+      inset: 0;
+      pointer-events: none;
+
+      background-image:
+        radial-gradient(circle, rgba(255,229,163,.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1.5px);
+
+      background-size:
+        67px 67px,
+        103px 103px;
+
+      background-position:
+        10px 20px,
+        38px 54px;
+
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+
+    .stars::before {
+      opacity: .45;
+      transform: scale(1.2);
+    }
+
+    .stars::after {
+      opacity: .25;
+      transform: scale(.8);
+    }
+
+    @keyframes twinkle {
+      from { opacity: .28; }
+      to { opacity: .75; }
+    }
+
+    /* 金色光暈 */
+    .glow {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          rgba(226,181,83,.22),
+          rgba(226,181,83,.06) 45%,
+          transparent 70%);
+
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+
+      width: min(620px, 100%);
+      padding: 38px 25px 32px;
+
+      text-align: center;
+
+      border: 1px solid rgba(225,193,119,.28);
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20,29,54,.92),
+          rgba(8,12,25,.94)
+        );
+
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        inset 0 0 50px rgba(230,190,95,.03);
+
+      backdrop-filter: blur(12px);
+    }
+
+    .owl {
+      font-size: 44px;
+      margin-bottom: 5px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .eyebrow {
+      margin: 5px 0 13px;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: .32em;
+      color: #d6b76f;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size: clamp(29px, 7vw, 43px);
+      font-weight: 500;
+      line-height: 1.2;
+
+      color: #fff4d4;
+
+      text-shadow:
+        0 0 24px rgba(238,195,100,.22);
+    }
+
+    .subtitle {
+      margin: 10px 0 28px;
+
+      color: #c9ba92;
+      font-size: 14px;
+      letter-spacing: .08em;
+    }
+
+    /* 分類帽魔法徽章 */
+
+    .seal {
+      position: relative;
+
+      width: 92px;
+      height: 92px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 27px;
+
+      border: 1px solid #d9b76c;
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 35px rgba(218,169,68,.18);
+    }
+
+    .seal::before,
+    .seal::after {
+      content: "";
+
+      position: absolute;
+
+      border: 1px solid rgba(226,191,112,.25);
+      border-radius: 50%;
+    }
+
+    .seal::before {
+      inset: -8px;
+    }
+
+    .seal::after {
+      inset: -16px;
+      opacity: .45;
+    }
+
+    .hat {
+      font-size: 48px;
+      transform: rotate(-7deg);
+    }
+
+    /* 倒數 */
+
+    .countdown-box {
+      padding: 21px 0 20px;
+
+      border-top:
+        1px solid rgba(220,188,117,.25);
+
+      border-bottom:
+        1px solid rgba(220,188,117,.25);
+    }
+
+    .count-title {
+      margin-bottom: 18px;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+
+      letter-spacing: .24em;
+      color: #d0b26c;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .number {
+      font-size: clamp(31px, 9vw, 52px);
+      line-height: 1;
+
+      color: #fff0c1;
+
+      font-variant-numeric: tabular-nums;
+
+      text-shadow:
+        0 0 18px rgba(236,188,80,.30);
+    }
+
+    .unit {
+      margin-top: 8px;
+
+      font-family: Arial, sans-serif;
+      font-size: 8px;
+
+      letter-spacing: .14em;
+      color: #958b74;
+    }
+
+    .deadline {
+      margin-top: 20px;
+
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+
+      letter-spacing: .16em;
+      color: #e5c77e;
+    }
+
+    .message {
+      max-width: 450px;
+
+      margin:
+        12px auto 23px;
+
+      font-size: 15px;
+      line-height: 1.9;
+
+      color: #ddd0ad;
+    }
+
+    /* 按鈕 */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 54px;
+
+      padding:
+        0 31px;
+
+      border-radius: 999px;
+
+      color: #171208;
+      text-decoration: none;
+
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+
+      letter-spacing: .05em;
+
+      background:
+        linear-gradient(
+          135deg,
+          #cba34e,
+          #f3da96,
+          #ba8936
+        );
+
+      box-shadow:
+        0 8px 30px rgba(190,142,48,.22);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 35px rgba(211,164,66,.30);
+    }
+
+    .status {
+      margin-top: 16px;
+
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+
+      letter-spacing: .12em;
+
+      color: #847b66;
+    }
+
+    /* 魔法粒子 */
+
+    .spark {
+      position: fixed;
+
+      bottom: -20px;
+
+      color: #f3d486;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      animation:
+        rise 7s linear infinite;
+    }
+
+    .s1 { left: 8%; animation-delay: 0s; }
+    .s2 { left: 23%; animation-delay: 2s; }
+    .s3 { left: 41%; animation-delay: 4s; }
+    .s4 { right: 27%; animation-delay: 1s; }
+    .s5 { right: 9%; animation-delay: 3s; }
+
+    @keyframes rise {
+
+      0% {
+        transform:
+          translateY(0)
+          scale(.5);
+
+        opacity: 0;
+      }
+
+      20% {
+        opacity: .8;
+      }
+
+      100% {
+        transform:
+          translateY(-100vh)
+          scale(1.3);
+
+        opacity: 0;
+      }
+    }
+
+    /* 最後24小時 */
+
+    body.urgent .number {
+      animation:
+        pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      50% {
+        text-shadow:
+          0 0 30px rgba(245,199,92,.75);
+      }
+    }
+
+    /* 手機 */
+
+    @media (max-width: 480px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .card {
+        padding:
+          30px 15px 27px;
+      }
+
+      .message {
+        font-size: 14px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="glow"></div>
+
+<div class="spark s1">✦</div>
+<div class="spark s2">✧</div>
+<div class="spark s3">✦</div>
+<div class="spark s4">✧</div>
+<div class="spark s5">✦</div>
+
+
+<main class="card">
+
+  <div class="owl">🦉</div>
+
+  <div class="eyebrow">
+    OFFICIAL ENROLLMENT NOTICE
+  </div>
+
+  <h1>
+    霍格華茲傳愛學院
+  </h1>
+
+  <div class="subtitle">
+    愛，是最高階的魔法
+  </div>
+
+
+  <div class="seal">
+
+    <div class="hat">
+      🎩
+    </div>
+
+  </div>
+
+
+  <section class="countdown-box">
+
+    <div
+      class="count-title"
+      id="countTitle"
+    >
+      入學通道關閉倒數
+    </div>
+
+
+    <div class="countdown">
+
+      <div>
+        <div
+          class="number"
+          id="days"
+        >
+          00
+        </div>
+
+        <div class="unit">
+          DAYS
+        </div>
+      </div>
+
+
+      <div>
+        <div
+          class="number"
+          id="hours"
+        >
+          00
+        </div>
+
+        <div class="unit">
+          HOURS
+        </div>
+      </div>
+
+
+      <div>
+        <div
+          class="number"
+          id="minutes"
+        >
+          00
+        </div>
+
+        <div class="unit">
+          MIN
+        </div>
+      </div>
+
+
+      <div>
+        <div
+          class="number"
+          id="seconds"
+        >
+          00
+        </div>
+
+        <div class="unit">
+          SEC
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="deadline">
+    10 · 10　23:59　TAIWAN
+  </div>
+
+
+  <div
+    class="message"
+    id="message"
+  >
+    分類帽已經準備好了。<br>
+    請在魔法通道關閉以前，完成你的入學手續。
+  </div>
+
+
+  <a
+    id="applyButton"
+    class="button"
+    href="https://forms.gle/EBbKg3MBuXyM2U2q6"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    ✦ 開啟入學申請書 ✦
+  </a>
+
+
+  <div
+    class="status"
+    id="status"
+  >
+    THE MAGIC AWAITS · 入學邀請有效中
+  </div>
+
+</main>
+
+
+<script>
+
+  /*
+   * 統一截止：
+   * 2026/10/10 23:59
+   * UTC+8 台灣時間
+   */
+
+  const deadline =
+    new Date(
+      "2026-10-10T23:59:00+08:00"
+    ).getTime();
+
+
+  const days =
+    document.getElementById("days");
+
+  const hours =
+    document.getElementById("hours");
+
+  const minutes =
+    document.getElementById("minutes");
+
+  const seconds =
+    document.getElementById("seconds");
+
+  const title =
+    document.getElementById("countTitle");
+
+  const message =
+    document.getElementById("message");
+
+  const status =
+    document.getElementById("status");
+
+  const button =
+    document.getElementById("applyButton");
+
+
+  function pad(number) {
+
+    return String(number)
+      .padStart(2, "0");
+
+  }
+
+
+  function updateCountdown() {
+
+    const now =
+      new Date().getTime();
+
+    const remaining =
+      deadline - now;
+
+
+    /* 截止 */
+
+    if (remaining <= 0) {
+
+      days.textContent = "00";
+      hours.textContent = "00";
+      minutes.textContent = "00";
+      seconds.textContent = "00";
+
+      title.textContent =
+        "ENROLLMENT CLOSED";
+
+      message.innerHTML =
+        "魔法通道已經關閉。<br>" +
+        "本次入學申請時間已結束。";
+
+      status.textContent =
+        "THE GATE IS CLOSED";
+
+      button.textContent =
+        "✦ 入學通道已關閉 ✦";
+
+      button.removeAttribute("href");
+
+      button.style.opacity = ".45";
+      button.style.pointerEvents = "none";
+
+      return;
+
+    }
+
+
+    const totalSeconds =
+      Math.floor(
+        remaining / 1000
+      );
+
+
+    const d =
+      Math.floor(
+        totalSeconds / 86400
+      );
+
+
+    const h =
+      Math.floor(
+        (totalSeconds % 86400)
+        / 3600
+      );
+
+
+    const m =
+      Math.floor(
+        (totalSeconds % 3600)
+        / 60
+      );
+
+
+    const s =
+      totalSeconds % 60;
+
+
+    days.textContent =
+      pad(d);
+
+    hours.textContent =
+      pad(h);
+
+    minutes.textContent =
+      pad(m);
+
+    seconds.textContent =
+      pad(s);
+
+
+    /* 最後24小時 */
+
+    if (
+      remaining <=
+      24 * 60 * 60 * 1000
+    ) {
+
+      document.body
+        .classList
+        .add("urgent");
+
+      title.textContent =
+        "FINAL 24 HOURS · 入學倒數";
+
+      status.textContent =
+        "最後 24 小時 · 魔法通道即將關閉";
+
+    }
+
+
+    /* 最後1小時 */
+
+    if (
+      remaining <=
+      60 * 60 * 1000
+    ) {
+
+      title.textContent =
+        "FINAL HOUR · 最後入學時刻";
+
+      status.textContent =
+        "最後一小時 · 魔法通道即將關閉";
+
+    }
+
+  }
+
+
+  updateCountdown();
+
+  setInterval(
+    updateCountdown,
+    1000
+  );
+
+</script>
+
+</body>
+</html>
